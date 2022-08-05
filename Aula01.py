@@ -49,7 +49,7 @@ print(carros)
 #Diferença entre dict e default dict
 d = {'key1':1, 'key2':2}
 print(d['key1'])
-print(d['key3'])
+#print(d['key3']) <- da erro
 from collections import defaultdict
 
 d = defaultdict(int)
@@ -68,6 +68,7 @@ listaNumeros = []
 for n in range(0,101):
     if n % 5 == 0:
         listaNumeros.append(n)
+print(sorted(listaNumeros,reverse=True))
 
 #2) Conte a quantidade de cada caracter presente no texto abaixo:
 #Texto
