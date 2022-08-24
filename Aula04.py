@@ -50,7 +50,43 @@ m = np.array(matriz)
 
 print(matriz + np.array([1,1,0]))
 
+"""
+3)
+Suponha dois arrays, A = [1,4,2,6,5,7,3,0] e B = [3,2,0,9,8,7].
 
+Remove de A todo elemento pertencente a B
+"""
+
+
+A = np.array([1,4,2,6,5,7,3,0])
+B = np.array([3,2,0,9,8,7])
+
+AB = np.setdiff1d(A,B)
+print (AB)
+
+"""
+4)
+A célula abaixo faz o download de um dataset e armazena na variável iris_2d. Em seguida, substitui alguns de seus elementos por NaN. Resolva as questões que se seguem:
+"""
+
+import numpy as np
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+iris_2d = np.genfromtxt(url, delimiter=',', dtype='float', usecols=[0,1,2,3])
+iris_2d[np.random.randint(150, size=20), np.random.randint(4, size=20)] = np.nan
+
+"""
+a) Encontre o número de NaN na primeira coluna
+
+b) Encontre o número total de NaN
+
+c) Encontre as posições (número da linha) de NaN na primeira coluna
+
+d) Substitua todos os NaN por 0
+"""
+coluna1 = iris_2d[:,0]
+emBranco = np.isnan(coluna1)
+
+#ESTA INCOMPLETO 
 
 
 
