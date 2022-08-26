@@ -56,16 +56,36 @@ Usando o dataset Pokemon.csv, faça:
 5) Agrupe os pokemons por Type 1 e retorne uma Série ordenada pela quantidade em ordem decrescente
 """
 
+# 1
 import pandas as pd
 poke = pd.read_csv('pokemon.csv')
-
-nullpoke = poke[poke.isnull():].columns
-
+notnullpoke = poke.dropna(axis=1).columns
+nullpoke =   set(poke.columns.tolist()) - set(notnullpoke.tolist())
 print (nullpoke)
 
-##df['year'].fillna(method = 'ffill', inplace = True)
 
+# 2
+poke['Type 2'].fillna(poke['Type 1'], inplace = True)
 
+# 3
+
+print(poke.columns)
+
+lendarios = poke[poke["Legendary"]== True]
+
+print(lendarios)
+
+#4
+
+poke["Name"] = poke["Name"].map(lambda x:x.upper())
+poke["Type 1"] = poke["Type 1"].map(lambda x:x.upper())
+poke["Type 2"] = poke["Type 2"].map(lambda x:x.upper())
+
+print(poke)
+group1 = poke["Type 1"]
+group = poke.groupby("Type 1").size()
+
+print (group)
 
 
 
