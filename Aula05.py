@@ -55,3 +55,17 @@ Usando o dataset Pokemon.csv, faça:
 4) Use apply/applymap para passar todos os valores das colunas Name, Type 1 e Type 2 para minúscula
 5) Agrupe os pokemons por Type 1 e retorne uma Série ordenada pela quantidade em ordem decrescente
 """
+
+import pandas as pd
+poke = pd.read_csv('pokemon.csv')
+
+nullpoke = poke[poke.isnull():].columns
+
+print (nullpoke)
+
+##df['year'].fillna(method = 'ffill', inplace = True)
+
+
+
+
+
