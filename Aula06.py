@@ -23,7 +23,8 @@ e Water.
 #1
 import pandas as pd
 import matplotlib.pyplot as plt
-poke = pd.read_csv('pokemon.csv')
+import numpy as np
+poke = pd.read_csv(r'C:\git\aulas_python\pokemon.csv')
 
 
 def  distribuicaoAtributo(dt,atributo):
@@ -37,13 +38,36 @@ print(poke.columns)
 
 fire = poke[["Attack","Defense"]][poke["Type 1"] =="Fire"]
 water = poke[["Attack","Defense"]][poke["Type 1"] =="Water"]
-print(fire)
-print(water)
-fig = plt.figure(figsize=[10,10]).add_subplot(1, 1, 1)
-fig.scatter(fire["Attack"],fire["Defense"],color="b")
-fig.scatter(water["Attack"],water["Defense"],color="r")
+
+#fig = plt.figure(figsize=[10,10]).add_subplot(1, 1, 1)
+#fig.scatter(fire["Attack"],fire["Defense"],color="b")
+#fig.scatter(water["Attack"],water["Defense"],color="r")
 
 #3
+N = 6
+group = poke.groupby(['Generation','Legendary']).size().reset_index(name='count')
+lendarios = group[group['Legendary']==True].reset_index()
+naolendarios = group[group['Legendary']==False].reset_index()
 
-print (poke.groupby())
+
+ind = np.arange(N)    
+width = 0.35       # largura das barras
+
+p1 = plt.bar(naolendarios["Generation"], naolendarios["count"], width)
+p2 = plt.bar(lendarios["Generation"], lendarios["count"], width,
+             )
+plt.ylabel('Quantidade de Lendarios')
+plt.title('Quantidade de pokemons por geração')
+plt.xticks(naolendarios["Generation"])
+plt.yticks(lendarios["count"]+naolendarios["count"])
+plt.legend((p1[0], p2[0]), ( 'Não lendários','Lendários',))
+for x,y,val in zip(lendarios["Generation"],lendarios["count"]/2, lendarios["count"]):
+    plt.text(x, y, "%.1d"%val, ha="center", va="center")
+for x,y,val in zip(lendarios["Generation"],lendarios["count"]+naolendarios["count"]/2, naolendarios["count"]):
+    plt.text(x, y, "%.1d"%val, ha="center", va="center")
+
+plt.show()
+
+
+
 
