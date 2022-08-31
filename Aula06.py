@@ -69,5 +69,7 @@ for x,y,val in zip(lendarios["Generation"],lendarios["count"]+naolendarios["coun
 plt.show()
 
 
+#axel bost
+
 
 
